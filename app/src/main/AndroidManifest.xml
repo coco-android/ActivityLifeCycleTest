@@ -17,7 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".NormalActivity">
+        <activity android:name=".NormalActivity"
+                  android:launchMode="singleTask"
+        >
         </activity>
         <activity android:name=".DialogActivity"
                   android:theme="@style/Theme.AppCompat.Dialog">

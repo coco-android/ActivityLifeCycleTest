@@ -33,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // 活动被系统回收之前放入的数据在这里获取
+        if (null != savedInstanceState) {
+            String dataKey = savedInstanceState.getString("data_key");
+            Log.d(TAG, "onCreate:savedInstanceState:data_key: " + dataKey);
+        }
     }
 
     @Override
@@ -69,5 +75,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Log.d(TAG, "========== onRestart ========== ");
+    }
+
+    /**
+     * 活动被系统回收之前调用此方法
+     * 1. 活动处于停滞状态
+     * 2. 手机内存不足，活动有可能会被回收
+     * @param outState
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String tempData = "这是MainActivity活动被系统回收之前，留下的数据";
+        outState.putString("data_key", tempData);
+
     }
 }
